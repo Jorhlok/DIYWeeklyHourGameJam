@@ -2,6 +2,8 @@ package net.jorhlok.diyweeklygamejam
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
 import net.jorhlok.oops.ObjectOrientedPlaySet
@@ -20,8 +22,9 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mar!!.Generate()
 
         oops = ObjectOrientedPlaySet()
-        oops!!.FrameThreshold = 0.2f //low power game can probably hand 5 fps without breaking down
+        oops!!.FrameThreshold = 0.2f //low power game can probably hand 5 fps without physicsbreaking down
 
+        oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
         oops!!.launchScript("title")
     }
 
@@ -43,6 +46,15 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
     }
 
     fun mkav() {
+        val generator = FreeTypeFontGenerator(Gdx.files.internal("gfx/libmono.ttf"))
+        val parameter = FreeTypeFontGenerator.FreeTypeFontParameter()
+        parameter.size = 14 * 1
+        parameter.magFilter = Texture.TextureFilter.Linear
+        parameter.minFilter = Texture.TextureFilter.Linear
+        parameter.hinting = FreeTypeFontGenerator.Hinting.Full
+        mgr?.newFont("libmono",generator.generateFont(parameter),1f)
+        generator.dispose()
+
         mar?.newMusic("1","bgm/Track One.mp3")
         mar?.newMusic("2","bgm/Track Two.mp3")
         mar?.newMusic("3","bgm/Track Three.mp3")
@@ -60,15 +72,16 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mar?.newSFX("start1","sfx/NESFX/Start1.wav")
         mar?.newSFX("start2","sfx/NESFX/Start2.wav")
 
-        mar?.newSFX("phone","sfx/wavestopmusic/8bit Cell phone.wav")
-        mar?.newSFX("arrow","sfx/wavestopmusic/Arrow Stick.wav")
-        mar?.newSFX("gun","sfx/wavestopmusic/Gun one.wav")
-        mar?.newSFX("laser1","sfx/wavestopmusic/Laser Slide Long.wav")
-        mar?.newSFX("laser2","sfx/wavestopmusic/Laser Slide.wav")
-        mar?.newSFX("crash","sfx/wavestopmusic/Mini Crash.wav")
-        mar?.newSFX("riser","sfx/wavestopmusic/Riser Chip.wav")
-        mar?.newSFX("robot","sfx/wavestopmusic/Robot Talk.wav")
-        mar?.newSFX("sling","sfx/wavestopmusic/Sling.wav")
+//        Caused by: com.badlogic.gdx.utils.GdxRuntimeException: WAV files must be PCM: 3
+//        mar?.newSFX("phone","sfx/wavestopmusic/8bit Cell phone.wav")
+//        mar?.newSFX("arrow","sfx/wavestopmusic/Arrow Stick.wav")
+//        mar?.newSFX("gun","sfx/wavestopmusic/Gun one.wav")
+//        mar?.newSFX("laser1","sfx/wavestopmusic/Laser Slide Long.wav")
+//        mar?.newSFX("laser2","sfx/wavestopmusic/Laser Slide.wav")
+//        mar?.newSFX("crash","sfx/wavestopmusic/Mini Crash.wav")
+//        mar?.newSFX("riser","sfx/wavestopmusic/Riser Chip.wav")
+//        mar?.newSFX("robot","sfx/wavestopmusic/Robot Talk.wav")
+//        mar?.newSFX("sling","sfx/wavestopmusic/Sling.wav")
 
         mgr?.newBuffer("main",640,360,640f,360f)
         mgr?.newBuffer("battle",640,360,640f,360f)
