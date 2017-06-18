@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-up" width="40" height="23" tilewidth="16" tileheight="16" nextobjectid="7">
+ <tileset firstgid="1" source="a2.tsx"/>
+ <tileset firstgid="769" source="b.tsx"/>
+ <tileset firstgid="1793" source="a5.tsx"/>
+ <tileset firstgid="2305" source="a1.tsx"/>
+ <layer name="Background" width="40" height="23">
+  <data encoding="base64" compression="zlib">
+   eJxtllmS00AQREXNh2M+4UogySyXYLFllkuwSFYEXIJFliLgJnATOATlIV90ysNHhVqt7q6qrKxsLVFVbVqftks7arzXc0476dtW32eNn15X1bO052kvrst8nXbQ2vPZi+Y46zw/aE2XNmnNqPlFvkfzdX5vNB61D9vqrF5n1xq/zZjepb1P+3D979xJMbC+k49OObYW10HfZq3das2sGI5ax55Bc0flQE61xsTa6bzPGdOXtK9p365L7p1hcZTPk/nvNN8oH2LrFcus+jVWi1Fn1FaTRnO9zhk1d9C6rb6PVpNGvqkBeTPfay85gsEYhU+D4UZNJ50F9lutXTRHjcG+1Tm1ch10/kExd+ZjpzUnnddqzHO6wPl/2OBjicIxOIBv8G/ku7EcqNkYhUOHWNeM88DEe4E648vxOVltyaG9wB3/cBEugQFz4M0Z1JDeGYUFOEyKd2+5gxffqK/3FHkwRjeoJ/XjG76WKHxDG3aGEbUeLmpGTYjpYPlvLSc0ah+Fx8Qwa47YwZK6ogPUE+5Nseby3uYbO4N40dhzHB/TPmke7OEmNZouMIR7cGA2bNjbGS6cMdu5aBhaSf3Al5i/p/2IdT95vQc7s1E8xMIdQH+7/zGKbt3fVNWDze0n2u37wbyu0l/azxz/isITMIRf8L5WfGCEnu2jcHvQdzhITncyltjcfsIntJna3GhNxrZP+53jP5qj53nCTfAHL3SWnMAMHZuj6Nl5zd2M5d7m9pP61FqP3t1od8Y2VCXPxepOn7IfPoMhWHVWS2pOb7FvNvyOV7n2qrzDJXBGz296PWM7VcUXGKCnO/M9m0961/WIe6ONcve2UXoNvOaMbbkq722U/xr6Fq1so/z/gAXrwJM7uTdfs60lll0U3eij9C+6Re3hxkl+JuMEfY+u0TPoD33YRtENOEutudPBFK2Go+TumoZeuvayjrzxAW+5505R+pE+ZUwvspY+JX/i9zu2ueCA5wtOaLj/C5Ir/OPfCJ3dRvlH4p7mnWdt69AbODhF4Tj5OJ67KBzYRemrnZ3HHu5euOA969oGdmAwRuEfBudcj7nbiJmajRYXfHNudoqB79TE/3+aKDoBb/iHOUbpB+cwONHvl/8xcAUcwGKJNaf8PLTYYyY3tJwep77OO+9lfJ/XPky9epT2OO1Jte731vZ7vWrD3u/IIdaajG7jkzGcbmJ91xL/3uZeZkyv0l6nvanWOtDHmodDlPuW73DGe+QvfVWvWQ==
+  </data>
+ </layer>
+ <layer name="Foreground" width="40" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztld0JAjEQhAfSiP1oDXrvWkTAnzoCepahTwrah4JW4QRuCYTD84jKIH4wbCBhMyy7bO2ALbUHsMPzuOa7jUsxJ7/vytcVK+rAPMcX/c35buFSzMnvS/156sI815a/2uhbv1ICtWSe1RtyfQJP1U3/KRKQ+k+RAfr13zcZ0tOIOlFnQX9TeppRN+ou6M/qp4rV789vozq/hvr8qu5fm1/V/Wv1U92/Vj/V/RupoD2/HrrzGwnQ7b+IR+q/Cc9jlMWc0nyBegAsxmk9
+  </data>
+ </layer>
+ <objectgroup name="NonTiles">
+  <object id="1" name="Ocean" type="Transition/Ocean" x="234" y="-19" width="80" height="42"/>
+  <object id="3" name="Desert" type="Transition/Desert" x="627" y="151" width="24" height="87"/>
+  <object id="4" name="Forest" type="Transition/Forest" x="-10" y="131" width="22" height="95"/>
+  <object id="5" name="Ruin" type="Transition/Ruin" x="292" y="353" width="88" height="27"/>
+  <object id="6" name="Inside" type="Transition/Inside" x="426" y="199" width="45" height="23"/>
+ </objectgroup>
+ <layer name="TileObjects" width="40" height="23">
+  <data encoding="base64" compression="zlib">
+   eJztzrsNwCAAA1G3jAnJInwWITAoXiFBkSjuSddalr6LQUrucnfYGPpJ9qfiqmsH/uv+9Ljh5oH/AAAAAOCNBay9Bos=
+  </data>
+ </layer>
+ <layer name="Terrain" width="40" height="23" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt1zEKACAMQ9GeuPcfxdVJ01RSyIOu5YMimBGR4JzQPV3zs+/Ga18Vc1cH99Uo97HvMtuUPlXqfcahfs6qfVPeF/dh1Ps299VM6lP9Ly1ZYUnp
+  </data>
+ </layer>
+</map>
