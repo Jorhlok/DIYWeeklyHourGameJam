@@ -2,8 +2,10 @@ package net.jorhlok.diyweeklygamejam
 
 import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.maps.tiled.TmxMapLoader
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
 import net.jorhlok.oops.ObjectOrientedPlaySet
@@ -24,7 +26,11 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         oops = ObjectOrientedPlaySet()
         oops!!.FrameThreshold = 0.2f //low power game can probably hand 5 fps without physicsbreaking down
 
+        oops!!.addTileMap("home", TmxMapLoader(InternalFileHandleResolver()).load("map/home.tmx"))
+        oops!!.addTileMap("inside", TmxMapLoader(InternalFileHandleResolver()).load("map/inside.tmx"))
+
         oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
+        oops!!.addMasterScript("home",DM("home",mgr!!,mar!!))
         oops!!.launchScript("title")
     }
 

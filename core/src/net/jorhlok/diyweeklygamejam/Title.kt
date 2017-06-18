@@ -30,7 +30,7 @@ class Title(mapname: String,
         m?.play(true)
     }
 
-    override fun prestep(deltaTime: Float) {
+    override fun poststep(deltaTime: Float) {
 
         if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
             if (pausetime < 0) {
@@ -41,7 +41,7 @@ class Title(mapname: String,
         if (pausetime >= 0) {
             pausetime += deltaTime
             if (pausetime >= pauseperiod) {
-                Parent?.launchScript("testdm")
+                Parent?.launchScript("home")
             }
         }
     }
