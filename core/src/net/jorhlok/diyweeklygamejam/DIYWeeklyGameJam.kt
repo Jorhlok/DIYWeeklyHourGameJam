@@ -6,10 +6,12 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.maps.tiled.TmxMapLoader
+import com.badlogic.gdx.math.Vector2
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
 import net.jorhlok.oops.ObjectOrientedPlaySet
 import com.badlogic.gdx.utils.Array
+import net.jorhlok.oops.LabelledObject
 
 class DIYWeeklyGameJam : ApplicationAdapter() {
     private var mgr: MultiGfxRegister? = null
@@ -35,6 +37,14 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         oops!!.addTileMap("Ruin", TmxMapLoader(InternalFileHandleResolver()).load("map/Ruin.tmx"))
         oops!!.addTileMap("Desert", TmxMapLoader(InternalFileHandleResolver()).load("map/Desert.tmx"))
 
+        oops!!.GlobalData["Bat"] = LabelledObject("int",0)
+        oops!!.GlobalData["Skelly"] = LabelledObject("int",0)
+        oops!!.GlobalData["Slime"] = LabelledObject("int",0)
+        oops!!.GlobalData["Ghost"] = LabelledObject("int",0)
+        oops!!.GlobalData["Spider"] = LabelledObject("int",0)
+        oops!!.GlobalData["Pos"] = LabelledObject("vec2", Vector2())
+        oops!!.GlobalData["FromFight"] = LabelledObject("bool",false)
+        oops!!.GlobalData["Monster"] = LabelledObject("Skelly",)
 
         oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
         oops!!.addMasterScript("Outside",DM("Outside",mgr!!,mar!!))
@@ -179,11 +189,11 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
 
         mkchar("man",3,0)
         mkchar("woman",6,0)
-        mkchar("skelly",9,0)
-        mkchar("slime",0,4)
-        mkchar("bat",3,4)
-        mkchar("ghost",6,4)
-        mkchar("spider",9,4)
+        mkchar("Skelly",9,0)
+        mkchar("Slime",0,4)
+        mkchar("Bat",3,4)
+        mkchar("Ghost",6,4)
+        mkchar("Spider",9,4)
     }
 
     fun mkchar(str: String, x: Int, y: Int) {

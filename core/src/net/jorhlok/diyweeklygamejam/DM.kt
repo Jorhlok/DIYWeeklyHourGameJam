@@ -25,7 +25,7 @@ class DM(mapname: String,
         var exiting = "Begin"
         var str = Parent?.GlobalData?.get("Exiting")?.label
         if (str != null) exiting = str
-        Parent?.GlobalData?.put("Exiting",LabelledObject(MapName))
+        Parent?.GlobalData?.put("Exiting", LabelledObject(MapName))
         var PlyrStart = Vector2(20f,2f)
         val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
         if (LyrTileObj != null)
@@ -47,6 +47,8 @@ class DM(mapname: String,
                             Living.add(Transition(o.name, o.rectangle, this, MGR, MAR))
                         type.toString().startsWith("Entrance") ->
                             if (type.toString().endsWith(exiting)) PlyrStart.set(o.rectangle.x/16,o.rectangle.y/16)
+                        type.toString().startsWith("Spawner") ->
+                                Living.add(Spawner(o.name,o.rectangle,this,MGR,MAR))
                     }
                 }
             }
