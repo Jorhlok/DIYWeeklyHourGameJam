@@ -2,8 +2,10 @@ package net.jorhlok.diyweeklygamejam
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.maps.objects.RectangleMapObject
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
+import com.badlogic.gdx.math.Vector2
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
 import net.jorhlok.oops.DungeonMaster
@@ -20,14 +22,35 @@ class DM(mapname: String,
     var renderer: OrthogonalTiledMapRenderer? = null
 
     override fun begin() {
+        var exiting = "Begin"
+        var str = Parent?.GlobalData?.get("Exiting")?.label
+        if (str != null) exiting = str
+        Parent?.GlobalData?.put("Exiting",LabelledObject(MapName))
+        var PlyrStart = Vector2(20f,2f)
         val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
-        if (LyrTileObj != null) for (y in 0..LyrTileObj.height-1)
-            for (x in 0..LyrTileObj.width-1) {
-//                val obj = LyrTileObj.getCell(x,y)
-//                if (obj != null && obj.tile != null) when (obj.tile.id) {
+        if (LyrTileObj != null)
+            for (y in 0..LyrTileObj.height-1)
+                for (x in 0..LyrTileObj.width-1) {
+    //                val obj = LyrTileObj.getCell(x,y)
+    //                if (obj != null && obj.tile != null) when (obj.tile.id) {
 
-//                }
+    //                }
+                }
+
+        val LyrNonTile = Level!!.layers["NonTiles"]
+        if (LyrNonTile != null)
+            for (o in LyrNonTile.objects) {
+                if (o is RectangleMapObject) {
+                    val type = o.properties["type"]
+                    if (type != null) when {
+                        type.toString().startsWith("Transition") ->
+                            Living.add(Transition(o.name, o.rectangle, this, MGR, MAR))
+                        type.toString().startsWith("Entrance") ->
+                            if (type.toString().endsWith(exiting)) PlyrStart.set(o.rectangle.x/16,o.rectangle.y/16)
+                    }
+                }
             }
+
 
         MGR.camera.setToOrtho(false,640f,360f)
         MGR.updateCam()
@@ -46,6 +69,7 @@ class DM(mapname: String,
 
         Player = Plar(MGR,MAR)
         Player!!.Name = "Player"
+        Player!!.Position.set(PlyrStart)
         Living.add(Player!!)
     }
 
@@ -86,9 +110,10 @@ class DM(mapname: String,
     override fun draw(deltatime: Float) {
 
         MGR.startBuffer("main")
+        if (renderer?.batch != null && renderer!!.batch.isDrawing) renderer!!.batch.end()
         renderer?.batch?.begin()
-        renderer?.renderTileLayer(Level!!.layers["Background"] as TiledMapTileLayer)
-        renderer?.renderTileLayer(Level!!.layers["Foreground"] as TiledMapTileLayer)
+        if (Level!!.layers["Background"] != null) renderer?.renderTileLayer(Level!!.layers["Background"] as TiledMapTileLayer)
+        if (Level!!.layers["Foreground"] != null) renderer?.renderTileLayer(Level!!.layers["Foreground"] as TiledMapTileLayer)
         renderer?.batch?.end()
         for (e in Living) {
             e.draw(deltatime)

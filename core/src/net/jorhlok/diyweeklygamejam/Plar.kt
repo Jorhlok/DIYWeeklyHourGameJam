@@ -16,10 +16,13 @@ class Plar(MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR)
     var charname = "woman"
 
     init{
-        AABB.set(0f, 0f, 1f, 0.5f)
+        AABB.set(0.125f, 0f, 0.75f, 0.5f)
+        Tolerance.set(0.5f,0.75f)
         Position.set(20f,1f)
         Physics = true
+        CollEntities = true
         CollTiles = true
+        Type = "Plar"
     }
 
     override fun prestep(deltatime: Float) {

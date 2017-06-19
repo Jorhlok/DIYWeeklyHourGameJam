@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-up" width="40" height="23" tilewidth="16" tileheight="16" nextobjectid="3">
+<map version="1.0" tiledversion="1.0.1" orientation="orthogonal" renderorder="right-up" width="40" height="23" tilewidth="16" tileheight="16" nextobjectid="4">
  <tileset firstgid="1" source="a2.tsx"/>
- <tileset firstgid="769" source="a5.tsx"/>
- <tileset firstgid="1281" source="things.tsx"/>
- <tileset firstgid="1665" source="b.tsx"/>
+ <tileset firstgid="193" source="a5.tsx"/>
+ <tileset firstgid="321" source="things.tsx"/>
+ <tileset firstgid="417" source="b.tsx"/>
  <layer name="Background" width="40" height="23">
   <data encoding="base64" compression="zlib">
-   eJztk8cNAlEMRO2/NMB2QGiE0MACDREaITRCaIRQCG8lfOayEiPhw9N4Lj6M9OrKrA+1aBZw4fz1Pt9yCktYCeYEFu2WxayCHnjR6c1nvyH3CMYwKDo99tu42RZ2sHadHvsduI9wgr3r9Njvwn2FG5xdp8d+D+4nvODuOj39TX/T3/Q3/dXwNf39T39nMO8gw7+u/rX7vQFwc3vo
+   eJzVVtsRgzAMy6rNBmSDZLOOQCfqD7rqXL/C40o/dFxxcWRbFqyllOdNsW74NY9/5/e6KcDv4aAKaPdk3MrTksAz4Lc4kOcsWw7rvGo8B47DgNYT8OsOJN+u5LMQ1RrNKtO/LG+NS2bu3vzBrwY9lBhBPNNb9Je5yZln9uMootlw/7qIZeZ7FNEcNF1ixzL7cRTQAnjwjnGM0Yz+abkH5cXvSvd7+eif8zf6by/f3BC3amL9RfV7fszns8bRA+bOZyOv5svICX5yb7I+z56cBfe00dw1j9b2V87V8/w99XjvRb6y/1l7By0xb00nM8jyjvQ36Hqm12R5s/4ij73KdzRN8e7s8eeoFgszXi75zdR9xXvE8jPwi3ZL6mLvPGd3G/zO+h6Hds78vn8Dne/ppQ==
   </data>
  </layer>
  <layer name="Furnishings" width="40" height="23">
   <data encoding="base64" compression="zlib">
-   eJztlTkKAjEUhp9CksKl0UZ7bWZuojfRayjoNVzAuYZrrzdwBT2EfyODJpGMJCbFfM0jw2P+LxshygmFPSM6MPv/nXCiKX//tsV4x+X6jTvcHg78lshdfWRfMb5xubqggjlVmVxfHJF7ypA9QO/QsN+ktwWXNpPrr8yQNzf0y9JrizXyNn/OzMIZbheLfjXsZd3BvbKVG6En9uCnyvW1Vqb4WqscNR1B1BW+LfT04NZ35BfKXdF5hHJXbHmM8CaMFe9CCftbFmn1xQJuicIvglMs0prjhgLOWDGA866jAbemZb8nOZwkpg==
+   eJxjYBgFo4B4UMVIfTMXETBzCyMqphZwZ0TFuMAmCu1cjEM/LnFqgkIa2UGKuYTid6ABpfE7kIAWaYiaZm6mgftoYeZIBV6jYUkywBZmxIbjUApverqVFLvo5a6hFFfkAmL8uASLGmxi1AAjIcwHK3BkBOMGapoJAFVlETQ=
   </data>
  </layer>
- <layer name="TerrainFurnished" width="40" height="23" visible="0">
+ <layer name="Terrain" width="40" height="23" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzTY2Rg0BvFo3gAMTZAilpKASXuxGcetdRSy130BuS6j17+Gq7uo5c7aO0+Ss0fiPCjdt4fSDAc3DeQfhgO4TeQ9g/2chZdH6Fykt7hTaz7BgoMNvegg6HiPmq3w6lpJgAuqzPH
-  </data>
- </layer>
- <layer name="TerrainBare" width="40" height="23" visible="0">
-  <data encoding="base64" compression="zlib">
-   eJzt1rEJAAAIxEBdyP3Hc4gIKiTwrVxpZUQ5t7ir6WPpY+lj6WPpY+lj6WPpY33xTf/hkzcbhaUq9w==
+   eJzt1rEJAAAIxMDv3X9fh4igQgLfypVWknJucVfTx9LH0sfSx9LH0sfSx9LH+uKb/sMnbzaR+AoP
   </data>
  </layer>
  <objectgroup name="NonTiles">
   <object id="1" name="Outside" type="TransitionOutside" x="281" y="361" width="71" height="19"/>
+  <object id="3" name="Entrance" type="Entrance/Outside" x="319" y="339"/>
  </objectgroup>
 </map>

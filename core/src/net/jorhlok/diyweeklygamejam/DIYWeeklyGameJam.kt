@@ -22,15 +22,20 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mkav()
         mgr!!.Generate()
         mar!!.Generate()
+        mar!!.setMusVolume(0.5f)
+        mar!!.setSFXVolume(0.5f)
 
         oops = ObjectOrientedPlaySet()
-        oops!!.FrameThreshold = 0.2f //low power game can probably hand 5 fps without physicsbreaking down
+        oops!!.FrameThreshold = 0.2f //low power game can probably handle 5 fps without physics breaking down
 
-        oops!!.addTileMap("home", TmxMapLoader(InternalFileHandleResolver()).load("map/home.tmx"))
-        oops!!.addTileMap("inside", TmxMapLoader(InternalFileHandleResolver()).load("map/inside.tmx"))
+        oops!!.addTileMap("Outside", TmxMapLoader(InternalFileHandleResolver()).load("map/home.tmx"))
+        oops!!.addTileMap("Inside", TmxMapLoader(InternalFileHandleResolver()).load("map/inside.tmx"))
+
+//        oops!!.GlobalData["Exiting"] = LabelledObject("Begin")
 
         oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
-        oops!!.addMasterScript("home",DM("home",mgr!!,mar!!))
+        oops!!.addMasterScript("Outside",DM("Outside",mgr!!,mar!!))
+        oops!!.addMasterScript("Inside",DM("Inside",mgr!!,mar!!))
         oops!!.launchScript("title")
     }
 
@@ -55,7 +60,7 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         val generator = FreeTypeFontGenerator(Gdx.files.internal("gfx/libmono.ttf"))
         val parameter = FreeTypeFontGenerator.FreeTypeFontParameter()
         parameter.size = 14 * 1
-        parameter.magFilter = Texture.TextureFilter.Linear
+        parameter.magFilter = Texture.TextureFilter.Nearest
         parameter.minFilter = Texture.TextureFilter.Linear
         parameter.hinting = FreeTypeFontGenerator.Hinting.Full
         mgr?.newFont("libmono",generator.generateFont(parameter),1f)
@@ -165,13 +170,13 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mgr?.newSpriteRgb("ghostdead","dead",0,4)
         mgr?.newSpriteRgb("spiderdead","dead",1,4)
 
-        mkchar("man",4,0)
-        mkchar("woman",7,0)
-        mkchar("skelly",10,0)
+        mkchar("man",3,0)
+        mkchar("woman",6,0)
+        mkchar("skelly",9,0)
         mkchar("slime",0,4)
-        mkchar("bat",4,4)
-        mkchar("ghost",7,4)
-        mkchar("spider",10,4)
+        mkchar("bat",3,4)
+        mkchar("ghost",6,4)
+        mkchar("spider",9,4)
     }
 
     fun mkchar(str: String, x: Int, y: Int) {
@@ -189,12 +194,12 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mgr?.newSpriteRgb("${str}Up2","characters",x+2,y+3)
 
         mgr?.newAnimRgb("${str}StandDn",Array<String>(arrayOf("${str}Dn1")))
-        mgr?.newAnimRgb("${str}WalkDn",Array<String>(arrayOf("${str}Dn0","${str}Dn1","${str}Dn2","${str}Dn1")),0.25f)
+        mgr?.newAnimRgb("${str}WalkDn",Array<String>(arrayOf("${str}Dn0","${str}Dn1","${str}Dn2","${str}Dn1")),0.125f)
         mgr?.newAnimRgb("${str}StandLf",Array<String>(arrayOf("${str}Lf1")))
-        mgr?.newAnimRgb("${str}WalkLf",Array<String>(arrayOf("${str}Lf0","${str}Lf1","${str}Lf2","${str}Lf1")),0.25f)
+        mgr?.newAnimRgb("${str}WalkLf",Array<String>(arrayOf("${str}Lf0","${str}Lf1","${str}Lf2","${str}Lf1")),0.125f)
         mgr?.newAnimRgb("${str}StandRt",Array<String>(arrayOf("${str}Rt1")))
-        mgr?.newAnimRgb("${str}WalkRt",Array<String>(arrayOf("${str}Rt0","${str}Rt1","${str}Rt2","${str}Rt1")),0.25f)
+        mgr?.newAnimRgb("${str}WalkRt",Array<String>(arrayOf("${str}Rt0","${str}Rt1","${str}Rt2","${str}Rt1")),0.125f)
         mgr?.newAnimRgb("${str}StandUp",Array<String>(arrayOf("${str}Up1")))
-        mgr?.newAnimRgb("${str}WalkUp",Array<String>(arrayOf("${str}Up0","${str}Up1","${str}Up2","${str}Up1")),0.25f)
+        mgr?.newAnimRgb("${str}WalkUp",Array<String>(arrayOf("${str}Up0","${str}Up1","${str}Up2","${str}Up1")),0.125f)
     }
 }

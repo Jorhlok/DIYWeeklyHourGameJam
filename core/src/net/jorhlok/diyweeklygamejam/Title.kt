@@ -41,7 +41,7 @@ class Title(mapname: String,
         if (pausetime >= 0) {
             pausetime += deltaTime
             if (pausetime >= pauseperiod) {
-                Parent?.launchScript("home")
+                Parent?.launchScript("Outside")
             }
         }
     }
