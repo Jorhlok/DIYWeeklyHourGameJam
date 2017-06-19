@@ -3,7 +3,6 @@ package net.jorhlok.diyweeklygamejam
 import com.badlogic.gdx.math.Rectangle
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
-import net.jorhlok.oops.LabelledObject
 
 /**
  * Created by joshm on 6/18/2017.
@@ -12,7 +11,7 @@ class Spawner(var Mon: String,
               var rect: Rectangle, parent: DM, MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR) {
     var statetime = 0f
     init {
-        rect.set(rect.x/16,rect.y/16,rect.width/16,rect.height/16)
+        Position.set(-20f,-20f)
         AABB.set(-2f,-2f,4f,4f)
         Parent = parent
         CollEntities = true

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.maps.objects.RectangleMapObject
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import net.jorhlok.multiav.MultiAudioRegister
 import net.jorhlok.multiav.MultiGfxRegister
@@ -27,15 +28,16 @@ class DM(mapname: String,
         if (str != null) exiting = str
         Parent?.GlobalData?.put("Exiting", LabelledObject(MapName))
         val PlyrStart = Vector2(20f,2f)
-        val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
-        if (LyrTileObj != null)
-            for (y in 0..LyrTileObj.height-1)
-                for (x in 0..LyrTileObj.width-1) {
-    //                val obj = LyrTileObj.getCell(x,y)
-    //                if (obj != null && obj.tile != null) when (obj.tile.id) {
 
-    //                }
-                }
+//        val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
+//        if (LyrTileObj != null)
+//            for (y in 0..LyrTileObj.height-1)
+//                for (x in 0..LyrTileObj.width-1) {
+//    //                val obj = LyrTileObj.getCell(x,y)
+//    //                if (obj != null && obj.tile != null) when (obj.tile.id) {
+//
+//    //                }
+//                }
 
         val LyrNonTile = Level!!.layers["NonTiles"]
         if (LyrNonTile != null)
@@ -48,7 +50,7 @@ class DM(mapname: String,
                         type.toString().startsWith("Entrance") ->
                             if (type.toString().endsWith(exiting)) PlyrStart.set(o.rectangle.x/16,o.rectangle.y/16)
                         type.toString().startsWith("Spawner") ->
-                                Living.add(Spawner(o.name,o.rectangle,this,MGR,MAR))
+                                Living.add(Spawner(o.name, Rectangle(o.rectangle.x/16,o.rectangle.y/16,o.rectangle.width/16,o.rectangle.height/16),this,MGR,MAR))
                     }
                 }
             }
