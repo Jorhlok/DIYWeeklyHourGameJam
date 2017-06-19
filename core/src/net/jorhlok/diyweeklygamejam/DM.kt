@@ -21,8 +21,45 @@ class DM(mapname: String,
     var Player: Plar? = null
     var muz = "2"
     var renderer: OrthogonalTiledMapRenderer? = null
+    var buttonold = false
+    var statetime = 0f
+    var text = ""
+    var goal = 3
+    var furnished = false
+    val drawtexttime = 2f
 
     override fun begin() {
+        var glue = 0
+        var string = 0
+        var cloth = 0
+        var bone = 0
+        var dung = 0
+        var num = Parent?.GlobalData?.get("Slime")?.obj as Int?
+        if (num != null) glue = num
+        num = Parent?.GlobalData?.get("Spider")?.obj as Int?
+        if (num != null) string = num
+        num = Parent?.GlobalData?.get("Ghost")?.obj as Int?
+        if (num != null) cloth = num
+        num = Parent?.GlobalData?.get("Skelly")?.obj as Int?
+        if (num != null) bone = num
+        num = Parent?.GlobalData?.get("Bat")?.obj as Int?
+        if (num != null) dung = num
+        text = "I could really use more "
+        furnished = false
+        when {
+            glue < goal -> text += "glue."
+            string < goal -> text += "string."
+            cloth < goal -> text += "cloth."
+            bone < goal -> text += "bone."
+            dung < goal -> text += "dung."
+            else -> {
+                text = "Time to go home!"
+                furnished = true
+            }
+        }
+
+        buttonold = false
+        statetime = -1f
         val fighting = Parent?.GlobalData?.get("FromFight")?.obj as Boolean
         var exiting = "Begin"
         val PlyrStart = Vector2(20f,2f)
@@ -35,15 +72,15 @@ class DM(mapname: String,
             if (p != null) PlyrStart.set(p)
         }
 
-//        val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
-//        if (LyrTileObj != null)
-//            for (y in 0..LyrTileObj.height-1)
-//                for (x in 0..LyrTileObj.width-1) {
-//    //                val obj = LyrTileObj.getCell(x,y)
-//    //                if (obj != null && obj.tile != null) when (obj.tile.id) {
-//
-//    //                }
-//                }
+        val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
+        if (LyrTileObj != null)
+            for (y in 0..LyrTileObj.height-1)
+                for (x in 0..LyrTileObj.width-1) {
+                    val obj = LyrTileObj.getCell(x,y)
+                    if (obj != null) {
+                        Living.add(Blocker(x.toFloat(),y.toFloat(),MGR,MAR))
+                    }
+                }
 
         val LyrNonTile = Level!!.layers["NonTiles"]
         if (LyrNonTile != null)
@@ -104,6 +141,15 @@ class DM(mapname: String,
             Player!!.Mailbox.add(LabelledObject("CtrlDn",true))
         else
             Player!!.Mailbox.add(LabelledObject("CtrlDn",false))
+
+        var button = false
+        if (Gdx.input.isKeyPressed(Input.Keys.ENTER) || Gdx.input.isKeyPressed(Input.Keys.SPACE))
+            button = true
+
+        if (button && !buttonold && statetime < 0)
+            statetime = 0f
+
+        buttonold = button
     }
 
     override fun end() {
@@ -125,9 +171,15 @@ class DM(mapname: String,
         renderer?.batch?.begin()
         if (Level!!.layers["Background"] != null) renderer?.renderTileLayer(Level!!.layers["Background"] as TiledMapTileLayer)
         if (Level!!.layers["Foreground"] != null) renderer?.renderTileLayer(Level!!.layers["Foreground"] as TiledMapTileLayer)
+        if (furnished && Level!!.layers["Furnishings"] != null) renderer?.renderTileLayer(Level!!.layers["Furnishings"] as TiledMapTileLayer)
         renderer?.batch?.end()
         for (e in Living) {
             e.draw(deltatime)
+        }
+        if (statetime >= 0) {
+            MGR.drawString("libmono",text,20f,11.25f+1/16f)
+            statetime += deltatime
+            if (statetime > drawtexttime) statetime = -1f
         }
         MGR.stopBuffer()
         MGR.drawBuffer("main")

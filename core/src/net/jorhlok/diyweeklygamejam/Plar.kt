@@ -22,6 +22,9 @@ class Plar(MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR)
         Position.set(20f,1f)
         Physics = true
         CollEntities = true
+        var s = HashSet<String>()
+        s.add("Blocker")
+        CollEntAsTile = s
         CollTiles = true
         Type = "Plar"
     }

@@ -66,7 +66,7 @@ class Fight(mapname: String,
 
         //do thing
         if (text.length > drawtext.length) {
-            var textlen = (statetime*4).toInt()
+            var textlen = (statetime*8).toInt()
             if (textlen >= text.length) textlen = text.length-1
             drawtext = text.substring(0..textlen)
             statetime += deltaTime*3 //run faster
@@ -78,9 +78,10 @@ class Fight(mapname: String,
                     if (state == 0)
                         state = Math.round(Math.random()*2+1).toInt()
                     if (damage >= damagegoal) {
-                        text = "You defeated the dreaded $Mon!"
+                        text = "You defeated the dreaded $Mon! You got an item."
                         color = Color(1f,1f,1f,1f)
                         MAR.getMus(muz)?.stop()
+                        MAR.getMus(muz)?.dispose()
                         MAR.playSFX("start1")
                         state = -2
                     } else if ((state/2)*2==state) { //even

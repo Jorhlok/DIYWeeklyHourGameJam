@@ -10,6 +10,7 @@ import net.jorhlok.multiav.MultiGfxRegister
 class Spawner(var Mon: String,
               var rect: Rectangle, parent: DM, MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR) {
     var statetime = 0f
+    val waittime = 2f
     init {
         Position.set(-20f,-20f)
         AABB.set(-2f,-2f,4f,4f)
@@ -21,8 +22,8 @@ class Spawner(var Mon: String,
     }
     override fun prestep(deltatime: Float) {
         statetime += deltatime
-        if (statetime > 1f) {
-            statetime -= 1f
+        if (statetime > waittime) {
+            statetime -= waittime
             Position.x = Math.random().toFloat() * rect.width + rect.x
             Position.y = Math.random().toFloat() * rect.height + rect.y
         }

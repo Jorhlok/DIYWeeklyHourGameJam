@@ -64,6 +64,7 @@ class Title(mapname: String,
         MGR.drawString("libmono","Furnish My House",320f,220.5f,2f,2f)
         MGR.drawString("libmono","RPG",320f,180.5f)
         if (statetime <= offtime) MGR.drawString("libmono","Press Start",320f,100.5f)
+        MGR.drawString("libmono","              Credits\nDesign/Programming: Jorhlok.itch.io\nGfx: sharm.itch.io/tiny16\nSfx: NESFX by hoffymusic.itch.io\nMusic: Chip Mus V1 wavestopmusic.itch.io",320f,32f)
         MGR.stopBuffer()
         MGR.drawBuffer("main")
         MGR.flush()
