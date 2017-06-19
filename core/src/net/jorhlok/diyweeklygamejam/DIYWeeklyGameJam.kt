@@ -36,6 +36,7 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         oops!!.addTileMap("Forest", TmxMapLoader(InternalFileHandleResolver()).load("map/Forest.tmx"))
         oops!!.addTileMap("Ruin", TmxMapLoader(InternalFileHandleResolver()).load("map/Ruin.tmx"))
         oops!!.addTileMap("Desert", TmxMapLoader(InternalFileHandleResolver()).load("map/Desert.tmx"))
+        oops!!.addTileMap("text", TmxMapLoader(InternalFileHandleResolver()).load("map/text.tmx"))
 
         oops!!.GlobalData["Bat"] = LabelledObject("int",0)
         oops!!.GlobalData["Skelly"] = LabelledObject("int",0)
@@ -53,6 +54,7 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         oops!!.addMasterScript("Forest",DM("Forest",mgr!!,mar!!))
         oops!!.addMasterScript("Ruin",DM("Ruin",mgr!!,mar!!))
         oops!!.addMasterScript("Desert",DM("Desert",mgr!!,mar!!))
+        oops!!.addMasterScript("Fight",Fight("text",mgr!!,mar!!))
         oops!!.launchScript("title")
     }
 
@@ -117,7 +119,7 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mgr?.newImageRgb("things","gfx/Tiny16/Characters/!things.png",16,16)
         mgr?.newImageRgb("dead","gfx/Tiny16/Characters/\$dead.png",16,16)
         mgr?.newImageRgb("characters","gfx/Tiny16/Characters/characters.png",16,16)
-        mgr?.newImageRgb("window","gfx/Tiny16/System/Window.png",16,16)
+        mgr?.newImageRgb("window","gfx/Tiny16/System/Window.png",8,8)
         mgr?.newImageRgb("a1","gfx/Tiny16/Tilesets/A1.png",16,16)
         mgr?.newImageRgb("b","gfx/Tiny16/Tilesets/B.png",16,16)
 
@@ -129,10 +131,20 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         mgr?.newSpriteRgb("winDnLf","window",4,4)
         mgr?.newSpriteRgb("winDn","window",5,4)
         mgr?.newSpriteRgb("winDnRt","window",7,4)
-        mgr?.newSpriteRgb("spin0","window",6,5)
-        mgr?.newSpriteRgb("spin1","window",7,5)
-        mgr?.newSpriteRgb("spin2","window",6,6)
-        mgr?.newSpriteRgb("spin3","window",7,6)
+        mgr?.newSpriteRgb("spin0","window",6,4)
+        mgr?.newSpriteRgb("spin1","window",7,4)
+        mgr?.newSpriteRgb("spin2","window",6,5)
+        mgr?.newSpriteRgb("spin3","window",6,4,1,1,false,false,3)
+        mgr?.newSpriteRgb("spin4","window",7,4,1,1,false,false,3)
+        mgr?.newSpriteRgb("spin5","window",6,5,1,1,false,false,3)
+        mgr?.newSpriteRgb("spin6","window",6,4,1,1,false,false,2)
+        mgr?.newSpriteRgb("spin7","window",7,4,1,1,false,false,2)
+        mgr?.newSpriteRgb("spin8","window",6,5,1,1,false,false,2)
+        mgr?.newSpriteRgb("spin9","window",6,4,1,1,false,false,1)
+        mgr?.newSpriteRgb("spinA","window",7,4,1,1,false,false,1)
+        mgr?.newSpriteRgb("spinB","window",6,5,1,1,false,false,1)
+
+        mgr?.newAnimRgb("spin",Array<String>(arrayOf("spin0","spin1","spin2","spin3","spin4","spin5","spin6","spin7","spin8","spin9","spinA","spinB")),1/13f)
 
         mgr?.newSpriteRgb("bed","B",1,0,1,2)
         mgr?.newSpriteRgb("bedbottom","B",1,1)

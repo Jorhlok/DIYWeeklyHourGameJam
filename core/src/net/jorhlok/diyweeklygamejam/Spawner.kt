@@ -32,13 +32,14 @@ class Spawner(var Mon: String,
     override fun poststep(deltatime: Float) {
         for (m in Mailbox)
             if (m.label.startsWith("Coll")) {
-                System.out.println("Ambushed by $Mon")
+//                System.out.println("Ambushed by $Mon")
                 if (Parent != null && Parent is DM) {
                     Parent!!.Parent!!.GlobalData["Pos"]!!.obj = (Parent as DM).Player!!.Position
                     Parent!!.Parent!!.GlobalData["FromFight"]!!.obj = true
                     val num = Parent!!.Parent!!.GlobalData[Mon]!!.obj as Int
                     Parent!!.Parent!!.GlobalData[Mon]!!.obj = num + 1
                     Parent!!.Parent!!.GlobalData["Monster"]!!.label = Mon
+                    Parent!!.Parent!!.launchScript("Fight")
                 }
             }
     }

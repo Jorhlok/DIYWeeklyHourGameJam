@@ -23,10 +23,10 @@ class DM(mapname: String,
 
     override fun begin() {
         var exiting = "Begin"
-        var str = Parent?.GlobalData?.get("Exiting")?.label
+        val str = Parent?.GlobalData?.get("Exiting")?.label
         if (str != null) exiting = str
         Parent?.GlobalData?.put("Exiting", LabelledObject(MapName))
-        var PlyrStart = Vector2(20f,2f)
+        val PlyrStart = Vector2(20f,2f)
         val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
         if (LyrTileObj != null)
             for (y in 0..LyrTileObj.height-1)

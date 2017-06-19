@@ -15,6 +15,7 @@ class ObjectOrientedPlaySet : DungeonMaster.OOPS {
     var MasterScript: MutableMap<String, DungeonMaster> = HashMap()
     override var GlobalData: MutableMap<String, LabelledObject> = HashMap()
     var FrameThreshold = 0.05f
+    var SwitchAfterDraw = true
 
     //runtime
     var Here: DungeonMaster? = null
@@ -36,6 +37,10 @@ class ObjectOrientedPlaySet : DungeonMaster.OOPS {
             System.err.println("Whoa, a frame took ${deltatime}s which is waaaaay longer than the threshold of ${FrameThreshold}s. " +
                     "Physics surely would have broken down had I let this frame run.")
         }
+        if (!SwitchAfterDraw) switch()
+    }
+
+    fun switch() {
         if (Launch != "") {
             val newscript = MasterScript[Launch]
             Launch = ""
@@ -53,6 +58,7 @@ class ObjectOrientedPlaySet : DungeonMaster.OOPS {
 
     fun draw(deltatime: Float) {
         if (Here != null) Here!!.draw(deltatime)
+        if (SwitchAfterDraw) switch()
     }
 
     override fun launchScript(key: String) {
