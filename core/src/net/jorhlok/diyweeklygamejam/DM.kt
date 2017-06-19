@@ -51,7 +51,7 @@ class DM(mapname: String,
             string < goal -> text += "string."
             cloth < goal -> text += "cloth."
             bone < goal -> text += "bone."
-            dung < goal -> text += "dung."
+            dung < goal -> text += "guano."
             else -> {
                 text = "Time to go home!"
                 furnished = true
