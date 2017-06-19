@@ -23,11 +23,17 @@ class DM(mapname: String,
     var renderer: OrthogonalTiledMapRenderer? = null
 
     override fun begin() {
+        val fighting = Parent?.GlobalData?.get("FromFight")?.obj as Boolean
         var exiting = "Begin"
-        val str = Parent?.GlobalData?.get("Exiting")?.label
-        if (str != null) exiting = str
-        Parent?.GlobalData?.put("Exiting", LabelledObject(MapName))
         val PlyrStart = Vector2(20f,2f)
+        if (!fighting) {
+            val str = Parent?.GlobalData?.get("Exiting")?.label
+            if (str != null) exiting = str
+            Parent?.GlobalData?.put("Exiting", LabelledObject(MapName))
+        } else {
+            var p = Parent?.GlobalData?.get("Pos")?.obj as Vector2?
+            if (p != null) PlyrStart.set(p)
+        }
 
 //        val LyrTileObj = Level!!.layers["TileObjects"] as TiledMapTileLayer?
 //        if (LyrTileObj != null)
@@ -48,7 +54,7 @@ class DM(mapname: String,
                         type.toString().startsWith("Transition") ->
                             Living.add(Transition(o.name, o.rectangle, this, MGR, MAR))
                         type.toString().startsWith("Entrance") ->
-                            if (type.toString().endsWith(exiting)) PlyrStart.set(o.rectangle.x/16,o.rectangle.y/16)
+                            if (!fighting && type.toString().endsWith(exiting)) PlyrStart.set(o.rectangle.x/16,o.rectangle.y/16)
                         type.toString().startsWith("Spawner") ->
                                 Living.add(Spawner(o.name, Rectangle(o.rectangle.x/16,o.rectangle.y/16,o.rectangle.width/16,o.rectangle.height/16),this,MGR,MAR))
                     }
@@ -109,6 +115,7 @@ class DM(mapname: String,
         Living.clear()
         Player = null
         renderer?.dispose()
+        renderer = null
     }
 
     override fun draw(deltatime: Float) {

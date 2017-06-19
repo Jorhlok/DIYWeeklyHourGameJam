@@ -20,14 +20,27 @@ class Fight(mapname: String,
     var renderer: OrthogonalTiledMapRenderer? = null
     var buttonold = false
     var statetime = 0f
-    var text = "Ambushed by a "
+    var text = ""
+    var drawtext = ""
     var color = Color(1f,1f,1f,1f)
+    var state = 0
+    var damage = 0
+    var damagegoal = 1
+    var Mon = "Skelly"
+
     override fun begin() {
-        var Mon = "Skelly"
         val str = Parent?.GlobalData?.get("Monster")?.label
         if (str != null) Mon = str
 
-        text += Mon
+        damage = 0
+        damagegoal = (Math.random()*100).toInt()
+
+        text = "Ambushed by a $Mon."
+        drawtext = ""
+        color = Color(1f,1f,1f,1f)
+        statetime = 0f
+        state = 0
+        buttonold = false
 
         MGR.camera.setToOrtho(false,640f,360f)
         MGR.updateCam()
@@ -52,7 +65,44 @@ class Fight(mapname: String,
             button = true
 
         //do thing
-
+        if (text.length > drawtext.length) {
+            var textlen = (statetime*4).toInt()
+            if (textlen >= text.length) textlen = text.length-1
+            drawtext = text.substring(0..textlen)
+            statetime += deltaTime*3 //run faster
+        }
+        else if (button && !buttonold) {
+            val num = (Math.random()*50).toInt()
+            when {
+                state >= 0 -> {
+                    if (state == 0)
+                        state = Math.round(Math.random()*2+1).toInt()
+                    if (damage >= damagegoal) {
+                        text = "You defeated the dreaded $Mon!"
+                        color = Color(1f,1f,1f,1f)
+                        MAR.getMus(muz)?.stop()
+                        MAR.playSFX("start1")
+                        state = -2
+                    } else if ((state/2)*2==state) { //even
+                        damage += num
+                        text = "You struck the $Mon for $num damage."
+                        MAR.playSFX("beep")
+                        color = Color(0f,1f,0f,1f)
+                    } else {
+                        text = "The $Mon struck you for $num damage."
+                        MAR.playSFX("boop")
+                        color = Color(1f,0f,0f,1f)
+                    }
+                    ++state
+                }
+                else -> {
+                    val str = Parent?.GlobalData?.get("Exiting")?.label
+                    if (str != null) Parent?.launchScript(str)
+                }
+            }
+            drawtext = ""
+            statetime = 0f
+        }
 
         buttonold = button
         statetime += deltaTime
@@ -65,6 +115,7 @@ class Fight(mapname: String,
             m.dispose()
         }
         renderer?.dispose()
+        renderer = null
     }
 
     override fun draw(deltatime: Float) {
@@ -77,7 +128,7 @@ class Fight(mapname: String,
         if (Level!!.layers["Foreground"] != null) renderer?.renderTileLayer(Level!!.layers["Foreground"] as TiledMapTileLayer)
         renderer?.batch?.end()
         //drawtext
-        MGR.drawString("libmono",text,1f,1f,1f,1f,0f,Vector2(),color)
+        MGR.drawString("libmono",drawtext,1f,1f,1f,1f,0f,Vector2(),color)
         MGR.drawRgb("spin",statetime,39f,1f)
         MGR.stopBuffer()
         MGR.drawBuffer("main")
