@@ -177,7 +177,7 @@ class DM(mapname: String,
             e.draw(deltatime)
         }
         if (statetime >= 0) {
-            MGR.drawString("libmono",text,20f,11.25f+1/16f)
+            MGR.drawString("libmono",text,20f,11.25f+1/32f)
             statetime += deltatime
             if (statetime > drawtexttime) statetime = -1f
         }

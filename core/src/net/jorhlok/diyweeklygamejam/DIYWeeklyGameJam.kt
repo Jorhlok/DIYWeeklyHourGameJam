@@ -78,9 +78,9 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
     fun mkav() {
         val generator = FreeTypeFontGenerator(Gdx.files.internal("gfx/libmono.ttf"))
         val parameter = FreeTypeFontGenerator.FreeTypeFontParameter()
-        parameter.size = 14 * 1
+        parameter.size = 14
         parameter.magFilter = Texture.TextureFilter.Nearest
-        parameter.minFilter = Texture.TextureFilter.Linear
+        parameter.minFilter = Texture.TextureFilter.Nearest
         parameter.hinting = FreeTypeFontGenerator.Hinting.Full
         mgr?.newFont("libmono",generator.generateFont(parameter),1f)
         generator.dispose()
