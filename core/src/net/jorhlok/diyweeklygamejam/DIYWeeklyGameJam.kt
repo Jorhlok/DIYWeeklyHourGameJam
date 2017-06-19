@@ -30,12 +30,19 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
 
         oops!!.addTileMap("Outside", TmxMapLoader(InternalFileHandleResolver()).load("map/home.tmx"))
         oops!!.addTileMap("Inside", TmxMapLoader(InternalFileHandleResolver()).load("map/inside.tmx"))
+        oops!!.addTileMap("Dark", TmxMapLoader(InternalFileHandleResolver()).load("map/Dark.tmx"))
+        oops!!.addTileMap("Forest", TmxMapLoader(InternalFileHandleResolver()).load("map/Forest.tmx"))
+        oops!!.addTileMap("Ruin", TmxMapLoader(InternalFileHandleResolver()).load("map/Ruin.tmx"))
+        oops!!.addTileMap("Desert", TmxMapLoader(InternalFileHandleResolver()).load("map/Desert.tmx"))
 
-//        oops!!.GlobalData["Exiting"] = LabelledObject("Begin")
 
         oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
         oops!!.addMasterScript("Outside",DM("Outside",mgr!!,mar!!))
         oops!!.addMasterScript("Inside",DM("Inside",mgr!!,mar!!))
+        oops!!.addMasterScript("Dark",DM("Dark",mgr!!,mar!!))
+        oops!!.addMasterScript("Forest",DM("Forest",mgr!!,mar!!))
+        oops!!.addMasterScript("Ruin",DM("Ruin",mgr!!,mar!!))
+        oops!!.addMasterScript("Desert",DM("Desert",mgr!!,mar!!))
         oops!!.launchScript("title")
     }
 

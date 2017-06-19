@@ -12,8 +12,9 @@ class Plar(MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR)
     var lf = false
     var rt = false
     var statetime = 0f
-    var drawdir = 0 //up,lf,dn,rt
+    var drawdir = 2 //up,lf,dn,rt
     var charname = "woman"
+    val speed = 16f
 
     init{
         AABB.set(0.125f, 0f, 0.75f, 0.5f)
@@ -39,20 +40,20 @@ class Plar(MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR)
 
         if (up && !dn) {
             drawdir = 0
-            Velocity.y = 4f
+            Velocity.y = speed
         } else if (dn && !up) {
             drawdir = 2
-            Velocity.y = -4f
+            Velocity.y = -1*speed
         } else {
             Velocity.y = 0f
         }
 
         if (lf && !rt) {
             drawdir = 1
-            Velocity.x = -4f
+            Velocity.x = -1*speed
         } else if (rt && !lf) {
             drawdir = 3
-            Velocity.x = 4f
+            Velocity.x = speed
         } else {
             Velocity.x = 0f
         }

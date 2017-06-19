@@ -16,12 +16,12 @@
   </data>
  </layer>
  <objectgroup name="NonTiles">
-  <object id="1" name="Dark" type="Transition/Dark" x="231" y="-24" width="80" height="42"/>
+  <object id="1" name="Dark" type="Transition/Dark" x="231" y="-21.5" width="80" height="42"/>
   <object id="3" name="Desert" type="Transition/Desert" x="629" y="151" width="24" height="87"/>
   <object id="4" name="Forest" type="Transition/Forest" x="-13" y="140" width="22" height="95"/>
   <object id="5" name="Ruin" type="Transition/Ruin" x="292" y="357" width="88" height="27"/>
-  <object id="6" name="Inside" type="Transition/Inside" x="403" y="211" width="45" height="23"/>
-  <object id="7" name="Entrance" type="Entrance/Inside" x="423" y="261"/>
+  <object id="6" name="Inside" type="Transition/Inside" x="402.5" y="215.5" width="45" height="23"/>
+  <object id="7" name="Entrance" type="Entrance/Inside" x="417" y="256"/>
   <object id="8" name="Start" type="Entrance/Begin" x="295" y="200"/>
   <object id="9" name="Entrance" type="Entrance/Forest" x="22" y="182"/>
   <object id="10" name="Entrance" type="Entrance/Desert" x="613" y="190"/>
