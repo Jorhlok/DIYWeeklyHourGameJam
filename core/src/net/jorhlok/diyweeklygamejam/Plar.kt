@@ -14,7 +14,7 @@ class Plar(MGR: MultiGfxRegister, MAR: MultiAudioRegister) : MAVEntity(MGR, MAR)
     var statetime = 0f
     var drawdir = 2 //up,lf,dn,rt
     var charname = "woman"
-    val speed = 16f
+    val speed = 4f
 
     init{
         AABB.set(0.125f, 0f, 0.75f, 0.5f)

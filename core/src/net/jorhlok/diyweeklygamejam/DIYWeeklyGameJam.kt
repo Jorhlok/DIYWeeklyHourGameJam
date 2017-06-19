@@ -44,7 +44,7 @@ class DIYWeeklyGameJam : ApplicationAdapter() {
         oops!!.GlobalData["Spider"] = LabelledObject("int",0)
         oops!!.GlobalData["Pos"] = LabelledObject("vec2", Vector2())
         oops!!.GlobalData["FromFight"] = LabelledObject("bool",false)
-        oops!!.GlobalData["Monster"] = LabelledObject("Skelly",)
+        oops!!.GlobalData["Monster"] = LabelledObject("Skelly")
 
         oops!!.addMasterScript("title",Title("",mgr!!,mar!!))
         oops!!.addMasterScript("Outside",DM("Outside",mgr!!,mar!!))
